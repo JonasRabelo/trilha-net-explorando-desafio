@@ -8,18 +8,24 @@ List<Pessoa> hospedes = new List<Pessoa>();
 
 Pessoa p1 = new Pessoa(nome: "Hóspede 1");
 Pessoa p2 = new Pessoa(nome: "Hóspede 2");
+Pessoa p3 = new Pessoa(nome: "Jeca");
 
 hospedes.Add(p1);
 hospedes.Add(p2);
 
 // Cria a suíte
-Suite suite = new Suite(tipoSuite: "Premium", capacidade: 2, valorDiaria: 30);
-
+Suite suite = new Suite(tipoSuite: "Premium", capacidade: 5, valorDiaria: 200);
 // Cria uma nova reserva, passando a suíte e os hóspedes
-Reserva reserva = new Reserva(diasReservados: 5);
+Reserva reserva = new Reserva(diasReservados: 23);
+try
+{
 reserva.CadastrarSuite(suite);
 reserva.CadastrarHospedes(hospedes);
-
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message);
+}
 // Exibe a quantidade de hóspedes e o valor da diária
 Console.WriteLine($"Hóspedes: {reserva.ObterQuantidadeHospedes()}");
-Console.WriteLine($"Valor diária: {reserva.CalcularValorDiaria()}");
+Console.WriteLine($"Valor diária: {reserva.CalcularValorDiaria():C2}");
